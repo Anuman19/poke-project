@@ -1,14 +1,14 @@
 import fs from "fs"
 
-const pokemon = JSON.parse(fs.readFileSync(`${process.cwd()}/lib/database/db.json`, "utf8"));
+const data = JSON.parse(fs.readFileSync(`${process.cwd()}/lib/database/db.json`, "utf8"));
 
 export default function handler(req, res) {
   const { name } = req.query
 
-  console.log(name)
+  //console.log(name)
 
   if(name) {
-    const chosenPokemon = pokemon.find(p => p.name.english.toLowerCase() === name.toLowerCase())
+    const chosenPokemon = data.pokemons.find(p => p.name.english.toLowerCase() === name.toLowerCase())
     if(chosenPokemon) {
       return res.status(200).json(chosenPokemon)
     } else {
@@ -16,5 +16,5 @@ export default function handler(req, res) {
     }
   }
 
-  res.status(200).json(pokemon)
+  res.status(200).json(data.pokemons)
 }

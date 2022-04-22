@@ -11,7 +11,7 @@ export default function AllPokemonPage({session}) {
 
     return session.user ? (
         <div className={styles.container}>
-            {pokemons.pokemons.map(post => <Pokemon key={post.id} name={post.name.english} />)}
+            {pokemons.map(post => <Pokemon key={post.id} name={post.name.english} />)}
         </div>
     ) : null
 }
