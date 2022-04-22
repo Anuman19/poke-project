@@ -1,0 +1,17 @@
+.index {
+
+}
+
+.index h1 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 768px;
+  margin: 0 auto;
+  height: 100vh;
+}
