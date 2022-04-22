@@ -46318,6 +46318,11 @@
       "password": "$2a$10$YkFbz7nkfUtM64tKLMfPme2IOwuBEVCWXcGv75NP6BEdeV94eQ/TG",
       "name": "Adam Admin",
       "id": 1
+    },
+    {
+      "email": "test@test",
+      "password": "$2a$10$ciulSbW.RelmP.shSSNgOe1U98c/Fwn8kEZ2THNtclAIHXOBDgqyS",
+      "id": 2
     }
   ]
 }
