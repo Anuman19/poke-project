@@ -14,23 +14,24 @@ const fetcher = async (url, options) => {
   return data
 }
 
-function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }) {
   const session = useSession()
   const newPageProps = {
     ...pageProps,
     session
   }
+  //console.log(newPageProps)
 
 
   return (
-    <SWRConfig value={{ fetcher }}>
-      <Navigation session={session} />
-      <main className="app">
-        <Component {...newPageProps} />
-      </main>
-    </SWRConfig>
-
+    <>
+      <SWRConfig value={{ fetcher }}>
+        <Navigation session={session} />
+        <main className="app">
+          <Component {...newPageProps} />
+        </main>
+      </SWRConfig>
+    </>
   )
 }
 
-export default MyApp

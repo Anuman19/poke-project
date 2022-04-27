@@ -2,9 +2,12 @@ import Image from "next/image"
 import Link from "next/link"
 import useSWR from "swr"
 import styles from "./Pokemon.module.css"
+import { deletePokemon } from "@lib/api"
+import { useRouter } from "next/router"
 
 export default function Pokemon({ name, session }) {
     const { data: pokemon, error } = useSWR(`/api/pokemon?name=${name}`)
+    const router = useRouter()
 
     if (error) return <div>An error occured while loading the pokemon!</div>
     if (!pokemon) return <div>Loading...</div>
@@ -73,6 +76,20 @@ export default function Pokemon({ name, session }) {
                         <i>{pokemon.name.english} uses {pokemon.profile.ability[0][0]}!</i>
                     </article>
                 </div>
+                <article>
+
+                    {<>
+                        <Link href={{
+                            pathname: "/edit",
+                            query: { data: pokemon.id }
+                        }}><a>Edit Pokemon</a></Link>
+                    </>}
+                    <a href="#" onClick={async (e) => {
+                        await deletePokemon(pokemon.id, session.accessToken)
+                        alert("Pokemon killed!")
+                        router.push("/")
+                    }}>Destroy</a>
+                </article>
             </div>
         </div>
     )

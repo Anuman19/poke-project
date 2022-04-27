@@ -20,6 +20,7 @@ export default function Navigation({ session }) {
 
                 {
                     user && <>
+                        <li key="index"><Link href="/">Home</Link></li>
                         <li key="create"><Link href="/create">Create new Pokemon</Link></li>
                         <li key="pokemons"><Link href="/pokemon">Catch em!</Link></li>
                         <li key="name">

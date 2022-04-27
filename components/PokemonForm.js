@@ -1,7 +1,9 @@
 import { createPokemon } from "@lib/api"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
+import { updatePokemon } from "@lib/api"
 import Pokemon from "./Pokemon"
+import ImageUpload from "./ImageUpload"
 
 const defaultModel = {
     name: {
@@ -82,6 +84,12 @@ export default function PokemonForm({ session, pokemonEdit }) {
     const [errors, setErrors] = useState(defaultModel)
     const [pokemon, setPokemon] = useState(defaultModel)
 
+    useEffect(() => {
+        if (pokemonEdit) {
+            setPokemon(pokemonEdit)
+        }
+    }, [pokemonEdit])
+
     const handleChange = (e) => {
         const name = e.target.name
         const value = e.target.value
@@ -89,7 +97,6 @@ export default function PokemonForm({ session, pokemonEdit }) {
         if (name.includes(".")) {
             const parts = name.split(".")
             const newPokemon = { ...pokemon }
-            console.log(parts)
             if (name.includes("type")) {
                 newPokemon.type[parts[1]] = value
             }
@@ -101,7 +108,6 @@ export default function PokemonForm({ session, pokemonEdit }) {
             else {
                 newPokemon[parts[0]][parts[1]] = value
             }
-            console.log(newPokemon)
             setPokemon(newPokemon)
         } else {
             setPokemon({
@@ -118,9 +124,12 @@ export default function PokemonForm({ session, pokemonEdit }) {
         const parts = name.split(".")
 
         const newArray = value.split(",")
-        console.log(newArray)
         newPokemon[parts[0]][parts[1]][0] = newArray
+        setPokemon(
+            newPokemon
+        )
     }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -138,7 +147,12 @@ export default function PokemonForm({ session, pokemonEdit }) {
         if (!pokemon.id) {
             const newPokemon = await createPokemon(pokemon, session.accessToken)
             alert("Pokemon created!")
-            router.push(`/api/pokemon/${newPokemon.id}`)
+            router.push(`/pokemonID?id=${newPokemon.id}`)
+        } else {
+            pokemon.updatedAt = new Date().toISOString()
+            await updatePokemon(pokemon, session.accessToken)
+            alert("Pokemon upgraded!")
+            router.push(`/pokemonID?id=${pokemon.id}`)
         }
 
         setIsLoading(false)
@@ -146,10 +160,18 @@ export default function PokemonForm({ session, pokemonEdit }) {
 
     return (
         <div>
+            <div>
+                <ImageUpload hires={pokemon.hires} handleImage={image => {
+                    setPokemon({
+                        ...pokemon,
+                        hires: image
+                    })
+                }} />
+            </div>
             <form onSubmit={handleSubmit}>
                 <fieldset>
                     <label>Name (english): </label>
-                    <input type="text" name="name.english" onChange={handleChange} value={pokemon.name.english} required />
+                    <input type="text" name="name.english" onChange={handleChange} value={pokemon.name.english} />
                 </fieldset>
 
                 <fieldset>
@@ -199,11 +221,6 @@ export default function PokemonForm({ session, pokemonEdit }) {
                     <label>Gender: </label>
                     <input type="text" name="profile.gender" onChange={handleChange} value={pokemon.profile.gender} />
                 </fieldset>
-
-               {/*  <fieldset>
-                    <label>Image</label>
-                    <input type="file" name="hires" onChange={handleChange} accept="image/*" />
-                </fieldset> */}
 
                 <button disabled={isLoading}>
                     {isLoading ? "...Loading" : "Submit"}
