@@ -29,68 +29,82 @@ export default function Pokemon({ name, session }) {
                         pokemon.type.join(" | ")
                     }
                 </h4>
-                <p>{pokemon.description}</p>
-
+                <p>{pokemon.description}</p></div>
+            <div className={styles.tables}>
                 {pokemon.base ?
-                    <table className={styles.stats}>
+                    <table className={styles.ability}>
                         <thead>
                             <tr>
                                 <th>HP</th>
-                                <th>Attack</th>
-                                <th>Defense</th>
-                                <th>Sp. Attack</th>
-                                <th>Sp. Defense</th>
-                                <th>Speed</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
                                 <td>{pokemon.base.HP}</td>
+                            </tr>
+                            <tr>
+                                <th>Attack</th>
                                 <td>{pokemon.base.Attack}</td>
+                            </tr>
+                            <tr>
+                                <th>Defense</th>
                                 <td>{pokemon.base.Defense}</td>
+                            </tr>
+                            <tr>
+                                <th>Sp. Attack</th>
                                 <td>{pokemon.base["Sp. Attack"]}</td>
+                            </tr>
+                            <tr>
+                                <th>Sp. Defense</th>
                                 <td>{pokemon.base["Sp. Defense"]}</td>
+                            </tr>
+                            <tr>
+                                <th>Speed</th>
                                 <td>{pokemon.base.Speed}</td>
                             </tr>
-                        </tbody>
+                        </thead>
                     </table> : null}
 
                 <table className={styles.stats}>
                     <thead>
                         <tr>
                             <th>Height</th>
-                            <th>Weight</th>
-                            <th>Gender</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
                             <td>{pokemon.profile.height}</td>
+                        </tr>
+                        <tr>
+                            <th>Weight</th>
                             <td>{pokemon.profile.weight}</td>
+                        </tr>
+                        <tr>
+                            <th>Gender</th>
                             <td>{pokemon.profile.gender}</td>
                         </tr>
+
+                    </thead>
+                    <tbody>
+
+
+
+
+
                     </tbody>
                 </table>
-                <div>
-                    <article>
-                        <i>{pokemon.name.english} uses {pokemon.profile.ability[0][0]}!</i>
-                    </article>
-                </div>
+            </div>
+            <div>
                 <article>
-
-                    {<>
-                        <Link href={{
-                            pathname: "/edit",
-                            query: { data: pokemon.id }
-                        }}><a>Edit Pokemon</a></Link>
-                    </>}
-                    <a href="#" onClick={async (e) => {
-                        await deletePokemon(pokemon.id, session.accessToken)
-                        alert("Pokemon killed!")
-                        router.push("/")
-                    }}>Destroy</a>
+                    <i>{pokemon.name.english} uses {pokemon.profile.ability[0][0]}!</i>
                 </article>
             </div>
+            <article>
+                {<>
+                    <Link href={{
+                        pathname: "/edit",
+                        query: { data: pokemon.id }
+                    }}><a>Edit Pokemon</a></Link>
+                </>}
+                <a href="#" onClick={async (e) => {
+                    await deletePokemon(pokemon.id, session.accessToken)
+                    alert("Pokemon killed!")
+                    router.push("/")
+                }}>Destroy</a>
+            </article>
+
         </div>
     )
 }

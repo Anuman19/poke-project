@@ -51,32 +51,26 @@ export default function ImageUpload({ handleImage, hires }) {
     return (
         <div className={styles.imageupload}>
             <form onSubmit={handleSubmit}>
-                <fieldset>
-
-                    <h2>Upload a new Picture!</h2>
-                    <input
-                        type="file"
-                        accept=".png,.jpg,.jpeg"
-                        ref={fileInput}
-                        onChange={onFileInputChange}
-                    />
-                    <button type="submit">Upload</button>
-                </fieldset>
-            </form>
-
-            <fieldset>
-                <h2>Select a Picture!</h2>
-                <p>Location: <i>\\wsl$\Ubuntu-20.04\root\DEV\Lösungen\public</i></p>
-                <input type="file"
+                <h2>Upload a new Picture!</h2>
+                <input
+                    type="file"
                     accept=".png,.jpg,.jpeg"
                     ref={fileInput}
-                    onChange={(e) => {
-                        const arr = e.target.value.split('\\')
-                        console.log(arr[arr.length - 1])
-                        setImagePath("/" + arr[arr.length - 1])
-                    }} />
-            </fieldset>
+                    onChange={onFileInputChange}
+                />
+                <button type="submit">Upload</button>
+            </form>
 
+            <h2>Select a Picture!</h2>
+            <p>Location: <i>\\wsl$\Ubuntu-20.04\root\DEV\Lösungen\public</i></p>
+            <input type="file"
+                accept=".png,.jpg,.jpeg"
+                ref={fileInput}
+                onChange={(e) => {
+                    const arr = e.target.value.split('\\')
+                    console.log(arr[arr.length - 1])
+                    setImagePath("/" + arr[arr.length - 1])
+                }} />
 
             {base64Image && <img src={base64Image} style={{ width: "300px", height: "auto" }} />}
 

@@ -93,7 +93,7 @@ export default function LoginPage({ session }) {
                 </fieldset>
 
                 <fieldset>
-                    <button disabled={isLoading} type="submit">
+                    <button disabled={isLoading} type="submit" className={styles.button} role="button">
                         {isLoading ? "Loading..." : "Login"}
                     </button>
                 </fieldset>

@@ -27,6 +27,7 @@ export default function MyApp({ Component, pageProps }) {
     <>
       <SWRConfig value={{ fetcher }}>
         <Navigation session={session} />
+        <h1 style={{ textAlign: "center" }}>Leximon</h1>
         <main className="app">
           <Component {...newPageProps} />
         </main>

@@ -12,7 +12,9 @@ export default function Navigation({ session }) {
 
     return (
         <nav className={styles.navigation}>
-            <div onClick={e => setIsOpen(open => !open)}>{isOpen ? "✖" : "☰"}</div>
+            <div onClick={e => setIsOpen(open => !open)}>
+                {isOpen ? "✖" : "☰"}
+            </div>
 
             <ul className={isOpen ? styles.open : ""}>
 

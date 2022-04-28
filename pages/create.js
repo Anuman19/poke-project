@@ -6,7 +6,7 @@ export default function PokemonCreatePage({ session }) {
 
     return session.user ? (
         <div>
-            <h1>Create new Pokemon</h1>
+            <h1 style={{textAlign:"center"}}>Create a new Pokemon</h1>
             <PokemonForm session={session} />
         </div>
     ) : null

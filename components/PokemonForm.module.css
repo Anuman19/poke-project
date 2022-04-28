@@ -1,0 +1,61 @@
+.container {
+    padding: .5em;
+    margin: 0em;
+    text-align: center;
+    background-color: aliceblue;
+}
+
+.container>* {
+    margin: .5em;
+    font-size: 1.5em;
+}
+
+.types>input {
+    margin: 1em;
+}
+
+.area{
+    resize: none;
+    outline: none;
+    float: left;
+    width: 100%;
+    min-height: 75px;
+    outline: none;
+    resize: none;
+}
+.form>fieldset>input,
+.thead>tr>td>input,
+.area {
+    border: 1px solid #07c;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.table {
+    width: 100%;
+}
+
+.form>fieldset>table>thead>tr>td>input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.form>fieldset>table>thead>tr>td>input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+
+    .table,
+    .table thead,
+    .table tr {
+        display: grid;
+        width: 100%;
+    }
+
+    .table tr {
+        grid-template-columns: auto auto;
+    }
+
+}

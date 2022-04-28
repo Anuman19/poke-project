@@ -2,7 +2,7 @@ import { createPokemon } from "@lib/api"
 import { useRouter } from "next/router"
 import { useEffect, useState, useCallback } from "react"
 import { updatePokemon } from "@lib/api"
-import Pokemon from "./Pokemon"
+import styles from "./PokemonForm.module.css"
 import ImageUpload from "./ImageUpload"
 
 const defaultModel = {
@@ -159,8 +159,8 @@ export default function PokemonForm({ session, pokemonEdit }) {
     }
 
     return (
-        <div>
-            <div>
+        <div className={styles.container}>
+            <div className={styles.upload}>
                 <ImageUpload hires={pokemon.hires} handleImage={image => {
                     setPokemon({
                         ...pokemon,
@@ -168,7 +168,7 @@ export default function PokemonForm({ session, pokemonEdit }) {
                     })
                 }} />
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={styles.form}>
                 <fieldset>
                     <label>Name (english): </label>
                     <input type="text" name="name.english" onChange={handleChange} value={pokemon.name.english} />
@@ -179,34 +179,44 @@ export default function PokemonForm({ session, pokemonEdit }) {
                     <input type="text" name="name.german" onChange={handleChange} value={pokemon.name.german} />
                 </fieldset>
 
-                <fieldset>
+                <fieldset className={styles.types}>
                     <label>Types: </label>
                     <input type="text" name="type.0" onChange={handleChange} value={pokemon.type[0]} />
                     <input type="text" name="type.1" onChange={handleChange} value={pokemon.type[1]} />
                 </fieldset>
 
                 <fieldset><h3>Base Stats <br /></h3>
-                    <label>HP: </label>
-                    <input type="number" name="base.HP" onChange={handleChange} value={pokemon.base.HP} />
-                    <label>Attack: </label>
-                    <input type="number" name="base.Attack" onChange={handleChange} value={pokemon.base.Attack} />
-                    <label>Defense: </label>
-                    <input type="number" name="base.Defense" onChange={handleChange} value={pokemon.base.Defense} />
-                    <label>Sp. Attack: </label>
-                    <input type="number" name="base.Sp. Attack" onChange={handleChange} value={pokemon.base["Sp. Attack"]} />
-                    <label>Sp. Defense: </label>
-                    <input type="number" name="base.Sp. Defense" onChange={handleChange} value={pokemon.base["Sp. Defense"]} />
-                    <label>Speed: </label>
-                    <input type="number" name="base.Speed" onChange={handleChange} value={pokemon.base.Speed} />
+                    <table className={styles.table}>
+                        <thead className={styles.thead}>
+                            <tr>
+                                <th><label>HP: </label></th>
+                                <td><input type="number" name="base.HP" onChange={handleChange} value={pokemon.base.HP} /></td>
+                                <th><label>Attack: </label></th>
+                                <td><input type="number" name="base.Attack" onChange={handleChange} value={pokemon.base.Attack} /></td>
+                            </tr>
+                            <tr>
+                                <th><label>Defense: </label></th>
+                                <td><input type="number" name="base.Defense" onChange={handleChange} value={pokemon.base.Defense} /></td>
+                                <th> <label>Sp. Attack: </label></th>
+                                <td><input type="number" name="base.Sp. Attack" onChange={handleChange} value={pokemon.base["Sp. Attack"]} /></td>
+                            </tr>
+                            <tr>
+                                <th><label>Sp. Defense: </label> </th>
+                                <td><input type="number" name="base.Sp. Defense" onChange={handleChange} value={pokemon.base["Sp. Defense"]} /></td>
+                                <th><label>Speed: </label></th>
+                                <td><input type="number" name="base.Speed" onChange={handleChange} value={pokemon.base.Speed} /></td>
+                            </tr>
+                        </thead>
+                    </table>
                 </fieldset>
 
                 <fieldset>
-                    <label>Species: </label>
+                    <label><h3>Species: </h3></label>
                     <input type="text" name="species" onChange={handleChange} value={pokemon.species} />
                 </fieldset>
                 <fieldset>
-                    <label>Description: </label>
-                    <input type="text" name="description" onChange={handleChange} value={pokemon.description} />
+                    <label><h3>Description: </h3></label>
+                    <textarea type="text" name="description" wrap="on" rows="5" onChange={handleChange} value={pokemon.description} className={styles.area} />
                 </fieldset>
 
                 <fieldset><h3>Profile<br /></h3>
@@ -226,6 +236,6 @@ export default function PokemonForm({ session, pokemonEdit }) {
                     {isLoading ? "...Loading" : "Submit"}
                 </button>
             </form>
-        </div>
+        </div >
     )
 }

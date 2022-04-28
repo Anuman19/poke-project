@@ -22,14 +22,11 @@ export default function Home({ session }) {
     if (!pokemon1 || !pokemon2 || !pokemon3 || !pokemon4) { return <div>Loading..</div> } else {
 
         return (
-            <div className={styles.index}>
-                <h1>Gotta Catch em All</h1>
-                <section className={styles.container}>
-                    {pokemons.map(poke => {
-                        return (
-                            <Pokemon key={poke.id} name={poke.name.english} />)
-                    })}
-                </section>
+            <div className={styles.container}>
+                {pokemons.map(poke => {
+                    return (
+                        <Pokemon key={poke.id} name={poke.name.english} className={styles.poke} />)
+                })}
             </div>
         )
     }
