@@ -13,7 +13,7 @@ export default function PokemonIDPage({ session }) {
     if (!pokemon) return (<h2>Getting there...</h2>)
 
     return session.user ? (
-        <div>
+        <div className={styles.container} >
             <Pokemon name={pokemon.name.english} session={session} />
         </div>
     ) : null

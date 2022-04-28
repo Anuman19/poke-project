@@ -2,6 +2,7 @@ import { SWRConfig } from 'swr'
 import useSession from '@lib/session'
 import './_app.css'
 import Navigation from '@components/Navigation'
+import Link from "next/link"
 
 const fetcher = async (url, options) => {
   const response = await fetch(url, options)
@@ -27,7 +28,7 @@ export default function MyApp({ Component, pageProps }) {
     <>
       <SWRConfig value={{ fetcher }}>
         <Navigation session={session} />
-        <h1 style={{ textAlign: "center" }}>Leximon</h1>
+        <h1 style={{ textAlign: "center", color: "#044a4f" }}><Link href="/">| Leximon |</Link></h1>
         <main className="app">
           <Component {...newPageProps} />
         </main>

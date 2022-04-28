@@ -10,11 +10,16 @@
     font-size: 1.5em;
 }
 
+
+.form fieldset {
+    border: 0;
+}
+
 .types>input {
     margin: 1em;
 }
 
-.area{
+.area {
     resize: none;
     outline: none;
     float: left;
@@ -23,6 +28,12 @@
     outline: none;
     resize: none;
 }
+
+.form{
+    padding: 1em;
+}
+
+.form,
 .form>fieldset>input,
 .thead>tr>td>input,
 .area {
@@ -45,6 +56,13 @@
     margin: 0;
 }
 
+.baseStats, .profile {
+    display: flex;
+    flex-direction: column;
+    background-color:#99c2ff;
+    border-radius: 15px;
+}
+
 @media screen and (max-width: 768px) {
 
     .table,
@@ -58,4 +76,10 @@
         grid-template-columns: auto auto;
     }
 
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        font-size: .5em;
+    }
 }

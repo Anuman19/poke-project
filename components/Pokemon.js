@@ -91,18 +91,19 @@ export default function Pokemon({ name, session }) {
                     <i>{pokemon.name.english} uses {pokemon.profile.ability[0][0]}!</i>
                 </article>
             </div>
-            <article>
+            <article className={styles.link}>
                 {<>
                     <Link href={{
                         pathname: "/edit",
                         query: { data: pokemon.id }
-                    }}><a>Edit Pokemon</a></Link>
+                    }}><a><h4>Edit Pokemon</h4></a></Link>
                 </>}
+                <p style={{width: "2em"}}><b>|</b></p>
                 <a href="#" onClick={async (e) => {
                     await deletePokemon(pokemon.id, session.accessToken)
                     alert("Pokemon killed!")
                     router.push("/")
-                }}>Destroy</a>
+                }}><h4>Destroy</h4></a>
             </article>
 
         </div>

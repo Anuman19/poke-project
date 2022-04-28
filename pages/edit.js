@@ -12,12 +12,10 @@ export default function PokemonEditPage({ session }) {
 
     const { data: pokemon, error } = useSWR(`/api/pokemon/${router.query.data}`)
     if (!pokemon) return <div>Loading...</div>
-    console.log(pokemon)
-
-
+    
     return (
         <div>
-            <h1>Edit Pokemon</h1>
+            <h1>Edit {pokemon.name.english}</h1>
             <PokemonForm session={session} pokemonEdit={pokemon} />
         </div>
     )

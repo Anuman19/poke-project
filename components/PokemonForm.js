@@ -3,6 +3,7 @@ import { useRouter } from "next/router"
 import { useEffect, useState, useCallback } from "react"
 import { updatePokemon } from "@lib/api"
 import styles from "./PokemonForm.module.css"
+import buttonStyle from "../pages/login.module.css"
 import ImageUpload from "./ImageUpload"
 
 const defaultModel = {
@@ -170,22 +171,22 @@ export default function PokemonForm({ session, pokemonEdit }) {
             </div>
             <form onSubmit={handleSubmit} className={styles.form}>
                 <fieldset>
-                    <label>Name (english): </label>
+                    <label><h4>Name (english): </h4></label>
                     <input type="text" name="name.english" onChange={handleChange} value={pokemon.name.english} />
                 </fieldset>
 
                 <fieldset>
-                    <label>Name (german): </label>
+                    <label><h4>Name (german): </h4></label>
                     <input type="text" name="name.german" onChange={handleChange} value={pokemon.name.german} />
                 </fieldset>
 
                 <fieldset className={styles.types}>
-                    <label>Types: </label>
+                    <label><h4>Types: </h4></label>
                     <input type="text" name="type.0" onChange={handleChange} value={pokemon.type[0]} />
                     <input type="text" name="type.1" onChange={handleChange} value={pokemon.type[1]} />
                 </fieldset>
 
-                <fieldset><h3>Base Stats <br /></h3>
+                <fieldset className={styles.baseStats}><h3>Base Stats <br /></h3>
                     <table className={styles.table}>
                         <thead className={styles.thead}>
                             <tr>
@@ -211,28 +212,40 @@ export default function PokemonForm({ session, pokemonEdit }) {
                 </fieldset>
 
                 <fieldset>
-                    <label><h3>Species: </h3></label>
+                    <label><h4>Species: </h4></label>
                     <input type="text" name="species" onChange={handleChange} value={pokemon.species} />
                 </fieldset>
                 <fieldset>
-                    <label><h3>Description: </h3></label>
+                    <label><h4>Description: </h4></label>
                     <textarea type="text" name="description" wrap="on" rows="5" onChange={handleChange} value={pokemon.description} className={styles.area} />
                 </fieldset>
 
-                <fieldset><h3>Profile<br /></h3>
-                    <label>Height: </label>
-                    <input type="text" name="profile.height" onChange={handleChange} value={pokemon.profile.height} />
-                    <label>Weight: </label>
-                    <input type="text" name="profile.weight" onChange={handleChange} value={pokemon.profile.weight} />
-                    <label>Eggs (seperate by comma): </label>
-                    <input type="text" name="profile.egg" onChange={handleChangeAbilityAndEgg} value={pokemon.profile.egg[0]} />
-                    <label>Abilities (seperate by comma): </label>
-                    <input type="text" name="profile.ability" onChange={handleChangeAbilityAndEgg} value={pokemon.profile.ability[0]} />
-                    <label>Gender: </label>
-                    <input type="text" name="profile.gender" onChange={handleChange} value={pokemon.profile.gender} />
+                <fieldset className={styles.profile}><h3>Profile<br /></h3>
+                    <table className={styles.profileTable}>
+                        <thead className={styles.thead}>
+                            <tr>
+                                <th><label>Height: </label></th>
+                                <td><input type="text" name="profile.height" onChange={handleChange} value={pokemon.profile.height} /></td>
+                            </tr>
+                            <tr>
+                                <th><label>Weight: </label></th>
+                                <td><input type="text" name="profile.weight" onChange={handleChange} value={pokemon.profile.weight} /></td>
+                            </tr>
+                            <tr>
+                                <th><label>Eggs (seperate by comma): </label></th>
+                                <td><input type="text" name="profile.egg" onChange={handleChangeAbilityAndEgg} value={pokemon.profile.egg[0]} /></td>
+                            </tr><tr>
+                                <th><label>Abilities (seperate by comma): </label></th>
+                                <td><input type="text" name="profile.ability" onChange={handleChangeAbilityAndEgg} value={pokemon.profile.ability[0]} /></td>
+                            </tr><tr>
+                                <th><label>Gender: </label></th>
+                                <td><input type="text" name="profile.gender" onChange={handleChange} value={pokemon.profile.gender} /></td>
+                            </tr>
+                        </thead>
+                    </table>
                 </fieldset>
 
-                <button disabled={isLoading}>
+                <button className={buttonStyle.button} disabled={isLoading}>
                     {isLoading ? "...Loading" : "Submit"}
                 </button>
             </form>
