@@ -8,7 +8,7 @@ import ImageUpload from "./ImageUpload"
 
 const defaultModel = {
     name: {
-        english: "Pikachu",
+        english: "Pikachu 1",
         german: ""
     },
     type: [
@@ -89,7 +89,13 @@ export default function PokemonForm({ session, pokemonEdit }) {
         if (pokemonEdit) {
             setPokemon(pokemonEdit)
         }
-    }, [pokemonEdit])
+        if (!pokemonEdit.base) {
+            setPokemon({
+                ...pokemon,
+                base: defaultModel.base
+            })
+        }
+    }, [pokemonEdit, pokemon])
 
     const handleChange = (e) => {
         const name = e.target.name
@@ -172,7 +178,7 @@ export default function PokemonForm({ session, pokemonEdit }) {
             <form onSubmit={handleSubmit} className={styles.form}>
                 <fieldset>
                     <label><h4>Name (english): </h4></label>
-                    <input type="text" name="name.english" onChange={handleChange} value={pokemon.name.english} />
+                    <input type="text" name="name.english" onChange={handleChange} value={pokemon.name.english} required />
                 </fieldset>
 
                 <fieldset>
@@ -245,7 +251,7 @@ export default function PokemonForm({ session, pokemonEdit }) {
                     </table>
                 </fieldset>
 
-                <button className={buttonStyle.button} disabled={isLoading}>
+                <button className={buttonStyle.button} disabled={isLoading} style={{ margin: ".5em" }}>
                     {isLoading ? "...Loading" : "Submit"}
                 </button>
             </form>

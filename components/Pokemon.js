@@ -4,8 +4,11 @@ import useSWR from "swr"
 import styles from "./Pokemon.module.css"
 import { deletePokemon } from "@lib/api"
 import { useRouter } from "next/router"
+import { useEffect, useState } from "react"
+
 
 export default function Pokemon({ name, session }) {
+
     const { data: pokemon, error } = useSWR(`/api/pokemon?name=${name}`)
     const router = useRouter()
 
@@ -79,33 +82,31 @@ export default function Pokemon({ name, session }) {
                     </thead>
                     <tbody>
 
-
-
-
-
                     </tbody>
                 </table>
             </div>
             <div>
-                <article>
+                <article className={styles.usesAbility}>
                     <i>{pokemon.name.english} uses {pokemon.profile.ability[0][0]}!</i>
                 </article>
             </div>
             <article className={styles.link}>
-                {<>
-                    <Link href={{
-                        pathname: "/edit",
-                        query: { data: pokemon.id }
-                    }}><a><h4>Edit Pokemon</h4></a></Link>
-                </>}
-                <p style={{width: "2em"}}><b>|</b></p>
-                <a href="#" onClick={async (e) => {
-                    await deletePokemon(pokemon.id, session.accessToken)
-                    alert("Pokemon killed!")
-                    router.push("/")
-                }}><h4>Destroy</h4></a>
-            </article>
+                {session.user && <>
+                    <button className={styles.button}>
+                        <Link href={{
+                            pathname: "/edit",
+                            query: { data: pokemon.id }
+                        }}><a><h4>Edit Pokemon</h4></a></Link></button>
+                    <p style={{ width: "2em" }}><b>|</b></p></>}
 
+                {session.user && <button href="#" className={styles.button} onClick={async (e) => {
+                    if (confirm("Do you really want to erase this Pokémon from existence?")) {
+                        await deletePokemon(pokemon.id, session.accessToken)
+                        alert("Pokemon killed :(")
+                        router.push("/")
+                    }
+                }}><h4>Destroy</h4></button>}
+            </article>
         </div>
     )
 }

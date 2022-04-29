@@ -25,7 +25,7 @@ export default function Home({ session }) {
             <div className={styles.container}>
                 {pokemons.map(poke => {
                     return (
-                        <Pokemon key={poke.id} name={poke.name.english} className={styles.poke} />)
+                        <Pokemon key={poke.id} name={poke.name.english} className={styles.poke} session={session} />)
                 })}
             </div>
         )

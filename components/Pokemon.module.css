@@ -55,7 +55,46 @@
     justify-content: space-between;
 }
 
+.button {
+    background-color: #8b70d4;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    box-shadow: rgba(255, 255, 255, .4) 0 1px 0 0 inset;
+    box-sizing: border-box;
+    color: #201e24;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.15385;
+    margin: 0;
+    outline: none;
+    padding: .3em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+.button:hover,
+.button:focus {
+    background-color: #07c;
+}
+
+.usesAbility {
+    padding: .5em;
+    font-size: 1.3em;
+}
+
 @media screen and (max-width: 480px) {
+
+    .container>* {
+        font-size: 1.2em;
+    }
 
     .stats,
     .ability {
@@ -91,10 +130,12 @@
 }
 
 @media screen and (min-width: 1024px) {
+
     .stats,
     .ability {
         font-size: 1em;
     }
+
     .container {
         width: calc(75vw/2);
     }

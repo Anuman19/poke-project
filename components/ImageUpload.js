@@ -73,11 +73,15 @@ export default function ImageUpload({ handleImage, hires }) {
                     setImagePath("/" + arr[arr.length - 1])
                 }} /> */}
 
-            {base64Image && <img src={base64Image} style={{ width: "300px", height: "auto" }} />}
+            {base64Image && <div style={{ width: "100%", minHeight: "200px", position: "relative" }} className={uploadStyles.image}>
+                <p>New Picture →</p>
+                <Image src={base64Image} layout="fill" objectFit="contain" alt="pokemon" />
+            </div>}
 
             {
                 imagePath && <div>
-                    <div style={{ width: "100%", minHeight: "100px", position: "relative" }} className={uploadStyles.image}>
+                    <div style={{ width: "100%", minHeight: "200px", position: "relative" }} className={uploadStyles.image}>
+                        <p>Current Picture →</p>
                         <Image src={imagePath} layout="fill" objectFit="contain" alt="pokemon" />
                     </div>
                     <button className={styles.button} onClick={() => handleImage(imagePath)} type="submit">Set Picture</button>
