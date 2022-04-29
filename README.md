@@ -36,7 +36,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 # Leximon
 
-## Pages
+### Pages
 [http://localhost:3000/]
 [http://localhost:3000/pokemon]
 [http://localhost:3000/create]
