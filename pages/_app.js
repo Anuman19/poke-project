@@ -3,6 +3,7 @@ import useSession from '@lib/session'
 import './_app.css'
 import Navigation from '@components/Navigation'
 import Link from "next/link"
+import Footer from '@components/Footer'
 
 const fetcher = async (url, options) => {
   const response = await fetch(url, options)
@@ -32,6 +33,7 @@ export default function MyApp({ Component, pageProps }) {
         <main className="app">
           <Component {...newPageProps} />
         </main>
+        <Footer session={session} />
       </SWRConfig>
     </>
   )
