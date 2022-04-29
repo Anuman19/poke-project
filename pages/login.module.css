@@ -96,3 +96,7 @@
     min-height: 320px;
     font: inherit;
 }
+
+.register > * {
+    margin: .5em;
+}

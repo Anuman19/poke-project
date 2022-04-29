@@ -23,7 +23,7 @@ export default function Navigation({ session }) {
                             <li key="index"><Link href="/">Home</Link></li>
                             <li key="create"><Link href="/create">Create new Pokemon</Link></li>
                             <li key="pokemons"><Link href="/pokemon">Catch em!</Link></li>
-                            <li key="name"><Link href="/profile">{user.name}</Link></li>
+                            <li key="name"><Link href="/profile">{user.email}</Link></li>
                             <li key={user.name}>
                                 <a href="#" className={styles.logout} onClick={async (e) => {
                                     session.logout()

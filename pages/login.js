@@ -92,10 +92,11 @@ export default function LoginPage({ session }) {
                     {errors.password && <div className={styles.error}>{errors.password}</div>}
                 </fieldset>
 
-                <fieldset>
+                <fieldset className={styles.register}>
                     <button disabled={isLoading} type="submit" className={styles.button} role="button">
                         {isLoading ? "Loading..." : "Login"}
                     </button>
+                    <button onClick={e => router.push("/register")} className={styles.button}>Register</button>
                 </fieldset>
             </form>
         </div>

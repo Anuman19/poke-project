@@ -117,7 +117,7 @@ export default function RegisterPage({ session }) {
                 </fieldset>
 
                 <fieldset>
-                    <button disabled={isLoading} type="submit">
+                    <button disabled={isLoading} type="submit" className={styles.button}>
                         {isLoading ? "Loading..." : "Sign Up"}
                     </button>
                 </fieldset>

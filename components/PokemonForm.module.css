@@ -36,7 +36,8 @@
 .form,
 .form>fieldset>input,
 .thead>tr>td>input,
-.area {
+.area,
+.search {
     border: 1px solid #07c;
     border-radius: 15px;
     text-align: center;
